@@ -13,5 +13,7 @@ public interface UserService {
 	public Response forgetPassword(ForgetPasswordDto forgetpassword);
 	
 	public Response accountVerification(String token);
+	
+	public Response getAllUser();
 
 }

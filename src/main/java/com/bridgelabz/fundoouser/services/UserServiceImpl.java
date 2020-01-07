@@ -1,6 +1,7 @@
 package com.bridgelabz.fundoouser.services;
 
 import java.io.Serializable;
+import java.util.List;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +33,7 @@ public class UserServiceImpl implements UserService, Serializable {
 
 	@Autowired
 	private UserRepository repository;
-	
+
 //	@Autowired
 //	private RestTemplate template;
 
@@ -116,7 +117,7 @@ public class UserServiceImpl implements UserService, Serializable {
 	}
 
 	@Override
-	@Cacheable(key="#token", value="accountverification")
+	@Cacheable(key = "#token", value = "accountverification")
 	public Response accountVerification(String token) {
 		String email = jwt.getUserToken(token);
 		User user = repository.findByemail(email);
@@ -126,5 +127,11 @@ public class UserServiceImpl implements UserService, Serializable {
 		}
 		return new Response(400, environment.getProperty("INVALID_USER"), HttpStatus.BAD_REQUEST);
 	}
-	
+
+	@Override
+	public Response getAllUser() {
+		List<User> user=repository.findAll();
+		return new Response(200, environment.getProperty("USER_SHOWING"), user);
+	}
+
 }
