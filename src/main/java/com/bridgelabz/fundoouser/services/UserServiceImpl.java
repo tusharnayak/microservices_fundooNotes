@@ -128,6 +128,10 @@ public class UserServiceImpl implements UserService, Serializable {
 		return new Response(400, environment.getProperty("INVALID_USER"), HttpStatus.BAD_REQUEST);
 	}
 
+	/**
+	 * @purpose: to get all user details , should prefer this.
+	 * @return: it returns all user details.
+	 */
 	@Override
 	public Response getAllUser() {
 		List<User> user=repository.findAll();

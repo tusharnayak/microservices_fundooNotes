@@ -41,7 +41,7 @@ public class UserLoginController {
 	public ResponseEntity<Response> forgetPassword(@Valid @RequestBody ForgetPasswordDto forgetpassword) {
 		return new ResponseEntity<Response>(serviceImpl.forgetPassword(forgetpassword), HttpStatus.OK);
 	}
-	@PostMapping("/check_valid_user_or_not")
+	@PostMapping("/checkvaliduserornot")
 	public ResponseEntity<Response>checkValidUser(@RequestBody @RequestParam String token){
 		return new ResponseEntity<Response>(serviceImpl.accountVerification(token),HttpStatus.OK);
 	}

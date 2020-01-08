@@ -4,6 +4,7 @@ import org.springframework.boot.autoconfigure.data.redis.RedisProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
+import org.springframework.data.elasticsearch.repository.config.EnableElasticsearchRepositories;
 import org.springframework.data.redis.connection.RedisStandaloneConfiguration;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -16,6 +17,7 @@ import com.bridgelabz.fundoouser.model.User;
 
 @Configuration
 @EnableRedisRepositories
+@EnableElasticsearchRepositories(basePackages = "com.bridgelabz.fundoouser.config")
 public class Config {
 	@Bean
 	public BCryptPasswordEncoder bcyBCryptPasswordEncoder() {
