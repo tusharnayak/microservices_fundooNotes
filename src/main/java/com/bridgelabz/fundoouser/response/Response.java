@@ -12,6 +12,11 @@ public class Response implements Serializable{
 	private String message; // create message in String for give the user message
 	private Object data;
 	
+	public Response()
+	{
+		
+	}
+	
 	public Response(int status, String message, Object data) {
 		super();
 		this.status = status;

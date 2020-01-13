@@ -1,7 +1,9 @@
 package com.bridgelabz.fundoouser.services;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -86,6 +88,8 @@ public class UserServiceImpl implements UserService, Serializable {
 			if (user.getEmail().equals(logindto.getEmail())) {
 				if (isValid) {
 					bcryptPasswordEncoder.encode(logindto.getPassword());
+					LocalDateTime ldt = LocalDateTime.now();
+					user.setLoginDateTime(ldt);
 					repository.save(user);
 					return new Response(200, environment.getProperty("LOGIN"), HttpStatus.OK);
 				}
@@ -134,8 +138,19 @@ public class UserServiceImpl implements UserService, Serializable {
 	 */
 	@Override
 	public Response getAllUser() {
-		List<User> user=repository.findAll();
+		List<User> user = repository.findAll();
 		return new Response(200, environment.getProperty("USER_SHOWING"), user);
+	}
+
+	@Override
+	public Response lastLoginTime() {
+			List<User> userList = repository.findAll();
+			userList = userList.stream()
+					.sorted((list1, list2) -> list2.getLoginDateTime().compareTo(list1.getLoginDateTime()))
+					.collect(Collectors.toList());
+
+			return new Response(200, environment.getProperty("LOGIN_TIME"), userList);
+
 	}
 
 }

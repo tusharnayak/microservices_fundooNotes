@@ -15,5 +15,8 @@ public interface UserService {
 	public Response accountVerification(String token);
 	
 	public Response getAllUser();
+	
+	public Response lastLoginTime();
+	
 
 }

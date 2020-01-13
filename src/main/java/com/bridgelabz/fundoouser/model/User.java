@@ -1,6 +1,7 @@
 package com.bridgelabz.fundoouser.model;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 import javax.validation.constraints.NotBlank;
 
@@ -32,4 +33,5 @@ public class User implements Serializable{
 	private boolean isValid;
 	private String forgetPassword;
 	private String profilePic;
+	private LocalDateTime loginDateTime;
 }

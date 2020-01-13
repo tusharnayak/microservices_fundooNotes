@@ -50,5 +50,9 @@ public class UserLoginController {
 	public ResponseEntity<Response>findAllUser(){
 		return new ResponseEntity<Response>(serviceImpl.getAllUser(),HttpStatus.OK);
 	}
+	@GetMapping("/lastlogintime")
+	public ResponseEntity<Response>lastLoginTime(){
+		return new ResponseEntity<Response>(serviceImpl.lastLoginTime(),HttpStatus.OK);
+	}
 
 }
